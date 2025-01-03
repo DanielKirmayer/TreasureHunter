@@ -11,6 +11,8 @@ public class Town
     private String printMessage;
     private boolean toughTown;
     private boolean hasDied;
+    private String treasure;
+    private boolean huntedTreasure = false;
 
 
     public boolean isDead() {
@@ -49,6 +51,7 @@ public class Town
     public void hunterArrives(Hunter hunter)
     {
         this.hunter = hunter;
+        treasure = this.hunter.generateTreasure();
         printMessage = "Welcome to town, " + hunter.getHunterName() + ".";
 
         if (toughTown)
@@ -135,6 +138,40 @@ public class Town
 
             }
         }
+    }
+
+    public void huntForTreasure()
+    {
+        if (!huntedTreasure)
+        {
+            // call treasurehunt
+        }
+        else
+        {
+            // tell hunter he already tried hunting
+        }
+    }
+
+    // to display if already hunted for treasure, check huntedTreasure before
+    // calling this method
+    public boolean treasureHunt(boolean huntedTreasure)
+    {
+        if (!huntedTreasure)
+        {
+            huntedTreasure = true;
+            if ((Math.random() * 1) <= 0.1 )
+            {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    // only call if treasure found is successful
+    public String foundTreasure()
+    {
+        return treasure;
     }
 
     public String toString()
