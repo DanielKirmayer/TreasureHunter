@@ -1,3 +1,5 @@
+import java.util.HashSet;
+
 /**
  * Hunter Class<br /><br />
  * This class represents the treasure hunter character (the player) in the Treasure Hunt game.
@@ -6,6 +8,10 @@ public class Hunter
 {
     //Keeps the items in the kit separate
     private static final String KIT_DELIMITER = ";";
+
+    //Treasures
+    private String[] treasures = {"Ruby", "Emerald", "Sapphire"};
+    private HashSet<String> treasuresOwned = new HashSet<String>();
 
     //instance variables
     private String hunterName;
@@ -48,6 +54,30 @@ public class Hunter
         {
             gold = 0;
         }
+    }
+
+    public String generateTreasure()
+    {
+        return treasures[(int) (Math.random() * 3)];
+    }
+
+    public void addTreasure(String treasure)
+    {
+        int size = treasuresOwned.size();
+        treasuresOwned.add(treasure);
+        if (size == treasuresOwned.size())
+        {
+            System.out.println("Unfortunately, you already have that treasure.");
+        }
+        else
+        {
+            System.out.println("You have found the legendary " + treasure + "!");
+        }
+    }
+
+    public boolean hasAllTreasure()
+    {
+        return treasuresOwned.size() == 3;
     }
 
     /**
