@@ -52,6 +52,7 @@ public class Town
     {
         this.hunter = hunter;
         treasure = this.hunter.generateTreasure();
+        huntedTreasure = false;
         printMessage = "Welcome to town, " + hunter.getHunterName() + ".";
 
         if (toughTown)
@@ -144,10 +145,13 @@ public class Town
     {
         if (!huntedTreasure)
         {
-            // call treasurehunt
+            boolean x = this.treasureHunt(huntedTreasure);
+            hunter.addTreasure(foundTreasure());
+
         }
         else
         {
+            System.out.println("You have already tried to hunt for treasure.");
             // tell hunter he already tried hunting
         }
     }
