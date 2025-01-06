@@ -19,17 +19,6 @@ public class TreasureHunter
     private boolean normalMode;
 
     private boolean hasAllTreasure = false;
-    public boolean isHardMode() {
-        return hardMode;
-    }
-
-    public boolean isEasyMode() {
-        return easyMode;
-    }
-
-    public boolean isNormalMode() {
-        return normalMode;
-    }
     //Constructor
     /**
      * Constructs the Treasure Hunter game.

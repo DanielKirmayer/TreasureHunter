@@ -13,6 +13,9 @@ public class Hunter
     private String[] treasures = {"Ruby", "Emerald", "Sapphire"};
     private HashSet<String> treasuresOwned = new HashSet<String>();
 
+    //Inventory
+    private HashSet<String> inventory = new HashSet<String>();
+
     //instance variables
     private String hunterName;
     private String kit;
@@ -27,7 +30,7 @@ public class Hunter
     public Hunter(String hunterName, int startingGold)
     {
         this.hunterName = hunterName;
-        kit = "";
+//        kit = "";
         gold = startingGold;
     }
 
@@ -56,11 +59,22 @@ public class Hunter
         }
     }
 
+    /**
+     * Generates a treasure out of the treasure pool
+     * @return String representation of treasure
+     */
     public String generateTreasure()
     {
         return treasures[(int) (Math.random() * 3)];
     }
 
+    /**
+     * Adds treasure to treasure hunter's pool.
+     * If hunter already has the treasure, tells them that they already do
+     * Else, add the treasure to the HashSet
+     *
+     * @param treasure
+     */
     public void addTreasure(String treasure)
     {
         int size = treasuresOwned.size();
@@ -95,7 +109,7 @@ public class Hunter
      */
     public boolean buyItem(String item, int costOfItem)
     {
-        if (costOfItem == 0 || gold < costOfItem || hasItemInKit(item))
+        if (costOfItem == 0 || gold < costOfItem || hasItemInInventory(item))
         {
             return false;
         }
@@ -115,99 +129,132 @@ public class Hunter
      */
     public boolean sellItem(String item, int buyBackPrice)
     {
-        if (buyBackPrice <= 0 || !hasItemInKit(item))
+        if (buyBackPrice <= 0 || !hasItemInInventory(item))
         {
             return false;
         }
 
         gold += buyBackPrice;
-        removeItemFromKit(item);
+        removeItemFromInventory(item);
         return true;
     }
 
-    /**
-     *  Removes an item from the kit.
-     *
-     * @param item The item to be removed.
-     */
-    public void removeItemFromKit(String item)
+//    /**
+//     *  Removes an item from the kit.
+//     *
+//     * @param item The item to be removed.
+//     */
+//    public void removeItemFromKit(String item)
+//    {
+//        int itmIdx = kit.indexOf(item);
+//
+//        // if item is found
+//        if (itmIdx >= 0)
+//        {
+//            String tmpKit = kit.substring(0, itmIdx);
+//            int endIdx = kit.indexOf(KIT_DELIMITER, itmIdx);
+//            tmpKit += kit.substring(endIdx + 1);
+//
+//            // update kit
+//            kit = tmpKit;
+//        }
+//    }
+
+    public void removeItemFromInventory(String item)
     {
-        int itmIdx = kit.indexOf(item);
-
-        // if item is found
-        if (itmIdx >= 0)
-        {
-            String tmpKit = kit.substring(0, itmIdx);
-            int endIdx = kit.indexOf(KIT_DELIMITER, itmIdx);
-            tmpKit += kit.substring(endIdx + 1);
-
-            // update kit
-            kit = tmpKit;
-        }
+        inventory.remove(item);
     }
 
-    /**
-     * Checks to make sure that the item is not already in the kit.
-     * If not, it adds an item to the end of the String representing the hunter's kit.<br /><br />
-     * A KIT_DELIMITER character is added to the end of the of String.
-     *
-     * @param item The item to be added to the kit.
-     * @returns true if the item is not in the kit and has been added.
-     */
-    private boolean addItem(String item)
+    public void addItem(String item)
     {
-        if (!hasItemInKit(item))
-        {
-            kit += item + KIT_DELIMITER;
-            return true;
-        }
-
-        return false;
+        inventory.add(item);
     }
 
-    /**
-     * Searches the kit String for a specified item.
-     *
-     * @param item The search item
-     *
-     * @return true if the item is found.
-     */
-    public boolean hasItemInKit(String item)
-    {
-        int placeholder = 0;
 
-        while (placeholder < kit.length() - 1)
-        {
-            int endOfItem = kit.indexOf(KIT_DELIMITER, placeholder);
-            String tmpItem = kit.substring(placeholder, endOfItem);
-            placeholder = endOfItem + 1;
-            if (tmpItem.equals(item))
-            {
-                // early return
-                return true;
-            }
-        }
-        return false;
+//    /**
+//     * Checks to make sure that the item is not already in the kit.
+//     * If not, it adds an item to the end of the String representing the hunter's kit.<br /><br />
+//     * A KIT_DELIMITER character is added to the end of the of String.
+//     *
+//     * @param item The item to be added to the kit.
+//     * @returns true if the item is not in the kit and has been added.
+//     */
+//    private boolean addItem(String item)
+//    {
+//        if (!hasItemInKit(item))
+//        {
+//            kit += item + KIT_DELIMITER;
+//            return true;
+//        }
+//
+//        return false;
+//    }
+
+    public boolean hasItemInInventory(String item)
+    {
+        return inventory.contains(item);
     }
 
-    /** Returns a printable representation of the inventory, which
-     *  is a list of the items in kit, with the KIT_DELIMITER replaced with a space
-     *
-     * @return  The printable String representation of the inventory
-     */
+
+//    /**
+//     * Searches the kit String for a specified item.
+//     *
+//     * @param item The search item
+//     *
+//     * @return true if the item is found.
+//     */
+//    public boolean hasItemInKit(String item)
+//    {
+//        int placeholder = 0;
+//
+//        while (placeholder < kit.length() - 1)
+//        {
+//            int endOfItem = kit.indexOf(KIT_DELIMITER, placeholder);
+//            String tmpItem = kit.substring(placeholder, endOfItem);
+//            placeholder = endOfItem + 1;
+//            if (tmpItem.equals(item))
+//            {
+//                // early return
+//                return true;
+//            }
+//        }
+//        return false;
+//    }
+
+//    /** Returns a printable representation of the inventory, which
+//     *  is a list of the items in kit, with the KIT_DELIMITER replaced with a space
+//     *
+//     * @return  The printable String representation of the inventory
+//     */
+//    public String getInventory()
+//    {
+//        String printableKit = kit;
+//        String space = " ";
+//
+//        int index = 0;
+//
+//        while (printableKit.indexOf(KIT_DELIMITER) != -1)
+//        {
+//            index = printableKit.indexOf(KIT_DELIMITER);
+//            printableKit = printableKit.substring(0, index) + space + printableKit.substring(index + 1);
+//        }
+//        return printableKit;
+//    }
+
     public String getInventory()
     {
-        String printableKit = kit;
-        String space = " ";
 
-        int index = 0;
-
-        while (printableKit.indexOf(KIT_DELIMITER) != -1)
+        String inventory = "";
+        for (String item : this.inventory)
         {
-            index = printableKit.indexOf(KIT_DELIMITER);
-            printableKit = printableKit.substring(0, index) + space + printableKit.substring(index + 1);
+            if (this.inventory.size() == 1)
+            {
+                return " " + item;
+            }
+            inventory += " " + item + ",";
         }
-        return printableKit;
+        inventory = inventory.substring(0, inventory.length() - 1);
+        return inventory;
     }
 
     /**
@@ -216,9 +263,9 @@ public class Hunter
     public String toString()
     {
         String str = hunterName + " has " + gold + " gold";
-        if (!kit.equals(""))
+        if (inventory.size() != 0)
         {
-            str += " and " + getInventory();
+            str += " and" + getInventory();
         }
         return str;
     }
