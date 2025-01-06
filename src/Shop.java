@@ -7,11 +7,13 @@ import java.util.Scanner;
 public class Shop
 {
     // constants
-    private static final int WATER_COST = 2;
-    private static final int ROPE_COST = 4;
-    private static final int MACHETE_COST = 6;
-    private static final int HORSE_COST = 12;
-    private static final int BOAT_COST = 20;
+    private static int WATER_COST = 2;
+    private static int ROPE_COST = 4;
+    private static int MACHETE_COST = 6;
+    private static int HORSE_COST = 12;
+    private static int BOAT_COST = 20;
+
+
 
     // instance variables
     private double markdown;
@@ -21,9 +23,26 @@ public class Shop
     public Shop(double markdown)
     {
         this.markdown = markdown;
+        if (markdown == 1) {
+            WATER_COST = 1;
+            ROPE_COST = 2;
+            MACHETE_COST = 3;
+            HORSE_COST = 6;
+            BOAT_COST = 10;
+
+        }
+        else if (markdown == 0.75){
+            WATER_COST = 2;
+            ROPE_COST = 3;
+            MACHETE_COST = 4;
+            HORSE_COST = 9;
+            BOAT_COST = 15;
+        }
         customer = null;
     }
-
+    public double getMarkdown() {
+        return markdown;
+    }
     /** method for entering the shop
      * @param hunter  the Hunter entering the shop
      * @param buyOrSell  String that determines if hunter is "B"uying or "S"elling
@@ -31,6 +50,7 @@ public class Shop
     public void enter(Hunter hunter, String buyOrSell)
     {
         customer = hunter;
+
 
         Scanner scanner = new Scanner(System.in);
         if (buyOrSell.equals("B") || buyOrSell.equals("b"))
