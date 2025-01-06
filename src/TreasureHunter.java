@@ -132,7 +132,11 @@ public class TreasureHunter
         while (!(choice.equals("X") || choice.equals("x")) && !currentTown.isDead() && !hasAllTreasure)
         {
             hasAllTreasure = hunter.hasAllTreasure();
-
+            // breaks out of the while loop if the hunter cannot pay or has found all treasures
+            if (currentTown.isDead() || hasAllTreasure)
+            {
+                break;
+            }
             System.out.println();
             System.out.println(currentTown.getLatestNews());
             System.out.println("***");
@@ -149,6 +153,16 @@ public class TreasureHunter
             choice = scanner.nextLine();
             choice = choice.toUpperCase();
             processChoice(choice);
+        }
+
+        if (currentTown.isDead())
+        {
+            System.out.println("Unfortunately, you lost the brawl and you're out of gold. \nYou were thrown in jail, ending your treasure hunting journey.");
+        }
+
+        if (hasAllTreasure)
+        {
+            System.out.println("Congratulations! You have found all treasures! :D");
         }
     }
 
@@ -174,6 +188,10 @@ public class TreasureHunter
         else if (choice.equals("L") || choice.equals("l"))
         {
             currentTown.lookForTrouble();
+        }
+        else if (choice.equalsIgnoreCase("h"))
+        {
+            currentTown.huntForTreasure();
         }
         else if (choice.equals("X") || choice.equals("x"))
         {
