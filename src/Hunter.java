@@ -75,6 +75,11 @@ public class Hunter
         }
     }
 
+    /**
+     * Checks if the hunter has all treasures
+     *
+     * @return
+     */
     public boolean hasAllTreasure()
     {
         return treasuresOwned.size() == 3;

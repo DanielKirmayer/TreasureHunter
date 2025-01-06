@@ -12,7 +12,7 @@ public class Town
     private boolean toughTown;
     private boolean hasDied;
     private String treasure;
-    private boolean huntedTreasure = false;
+    private boolean huntedTreasure;
 
 
     public boolean isDead() {
@@ -127,26 +127,38 @@ public class Town
             }
             else
             {
-
+                printMessage += "That'll teach you to go lookin' fer trouble in MY town! Now pay up!";
+                // System.out.println(goldDiff);
                 hunter.changeGold(-1 * goldDiff);
                 if (hunter.getGold() <= 0){
                     hasDied = true;
-                    System.out.println("That'll teach you to go lookin' fer trouble in MY town! Now pay up!");
-                    System.out.println("You lost the brawl and pay " +  goldDiff + " gold.");
-                    System.out.println("You got brutally beaten and died RIP.");}
-
+                }
+                else
+                {
+                    printMessage += "\nYou lost the brawl and pay " +  goldDiff + " gold.";
+                }
 
 
             }
         }
     }
 
+    /**
+     * The hunter will be able to attempt to hunt for treasure
+     *
+     */
     public void huntForTreasure()
     {
         if (!huntedTreasure)
         {
-            boolean x = this.treasureHunt(huntedTreasure);
-            hunter.addTreasure(foundTreasure());
+            if (treasureHunt(huntedTreasure))
+            {
+                hunter.addTreasure(foundTreasure());
+            }
+            else
+            {
+                System.out.println("Unfortunately, you found nothing");
+            }
 
         }
         else
@@ -158,16 +170,24 @@ public class Town
 
     // to display if already hunted for treasure, check huntedTreasure before
     // calling this method
+
+    /**
+     * Hunter has a 1 in 10 chance of succeeding
+     *
+     * @param huntedTreasure
+     * @return true for found treasure
+     */
     public boolean treasureHunt(boolean huntedTreasure)
     {
         if (!huntedTreasure)
         {
-            huntedTreasure = true;
+            this.huntedTreasure = true;
             if ((Math.random() * 1) <= 0.1 )
             {
                 return true;
             }
             return false;
+
         }
         return false;
     }
