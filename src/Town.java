@@ -122,6 +122,7 @@ public class Town
             double victoryChance = Math.random();
             if (shop.getMarkdown() == 1)
                 victoryChance += 0.25;
+            //Makes fight easier if the difficulty is easy (uses shop data markdown to do this).
             if (victoryChance > noTroubleChance)
             {
                 printMessage += "Okay, stranger! You proved yer mettle. Here, take my gold.";

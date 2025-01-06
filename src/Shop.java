@@ -23,6 +23,7 @@ public class Shop
     public Shop(double markdown)
     {
         this.markdown = markdown;
+        // adjusts prices based on the markdown.
         if (markdown == 1) {
             WATER_COST = 1;
             ROPE_COST = 2;
