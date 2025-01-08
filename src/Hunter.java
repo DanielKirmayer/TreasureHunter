@@ -192,7 +192,11 @@ public class Hunter
 
     public boolean hasItemInInventory(String item)
     {
-        return inventory.contains(item);
+        for (String i : inventory)
+        {
+            return i.equalsIgnoreCase(item);
+        }
+        return false;
     }
 
 
