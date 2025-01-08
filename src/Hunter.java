@@ -162,12 +162,12 @@ public class Hunter
 
     public void removeItemFromInventory(String item)
     {
-        inventory.remove(item);
+        inventory.remove(item.toLowerCase());
     }
 
     public void addItem(String item)
     {
-        inventory.add(item);
+        inventory.add(item.toLowerCase());
     }
 
 
@@ -192,11 +192,7 @@ public class Hunter
 
     public boolean hasItemInInventory(String item)
     {
-        for (String i : inventory)
-        {
-            return i.equalsIgnoreCase(item);
-        }
-        return false;
+        return inventory.contains(item.toLowerCase());
     }
 
 
