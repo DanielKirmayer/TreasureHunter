@@ -6,8 +6,6 @@ import java.util.HashSet;
  */
 public class Hunter
 {
-    //Keeps the items in the kit separate
-    private static final String KIT_DELIMITER = ";";
 
     //Treasures
     private String[] treasures = {"Ruby", "Emerald", "Sapphire"};
@@ -18,14 +16,13 @@ public class Hunter
 
     //instance variables
     private String hunterName;
-    private String kit;
     private int gold;
 
     //Constructor
     /**
      * The base constructor of a Hunter assigns the name to the hunter and an empty kit.
      *
-     * @param name The hunter's name.
+     * @param hunterName The hunter's name.
      */
     public Hunter(String hunterName, int startingGold)
     {
@@ -38,11 +35,6 @@ public class Hunter
     public String getHunterName()
     {
         return hunterName;
-    }
-
-    public String getKit()
-    {
-        return kit;
     }
 
     public int getGold()
@@ -139,108 +131,47 @@ public class Hunter
         return true;
     }
 
-//    /**
-//     *  Removes an item from the kit.
-//     *
-//     * @param item The item to be removed.
-//     */
-//    public void removeItemFromKit(String item)
-//    {
-//        int itmIdx = kit.indexOf(item);
-//
-//        // if item is found
-//        if (itmIdx >= 0)
-//        {
-//            String tmpKit = kit.substring(0, itmIdx);
-//            int endIdx = kit.indexOf(KIT_DELIMITER, itmIdx);
-//            tmpKit += kit.substring(endIdx + 1);
-//
-//            // update kit
-//            kit = tmpKit;
-//        }
-//    }
 
+    /**
+     * Removes item from the inventory
+     *
+     * @param item item to be removed
+     */
     public void removeItemFromInventory(String item)
     {
         inventory.remove(item.toLowerCase());
     }
 
+    /**
+     * Adds item to the inventory.
+     * Because the inventory is a HashSet and all items are
+     * converted to lowercase beforehand, no duplicates can exist
+     *
+     * @param item to be added
+     */
     public void addItem(String item)
     {
         inventory.add(item.toLowerCase());
     }
 
 
-//    /**
-//     * Checks to make sure that the item is not already in the kit.
-//     * If not, it adds an item to the end of the String representing the hunter's kit.<br /><br />
-//     * A KIT_DELIMITER character is added to the end of the of String.
-//     *
-//     * @param item The item to be added to the kit.
-//     * @returns true if the item is not in the kit and has been added.
-//     */
-//    private boolean addItem(String item)
-//    {
-//        if (!hasItemInKit(item))
-//        {
-//            kit += item + KIT_DELIMITER;
-//            return true;
-//        }
-//
-//        return false;
-//    }
-
+    /**
+     * Searches inventory for a specified item
+     *
+     * @param item The search item
+     * @return true if item is found
+     */
     public boolean hasItemInInventory(String item)
     {
         return inventory.contains(item.toLowerCase());
     }
 
-
-//    /**
-//     * Searches the kit String for a specified item.
-//     *
-//     * @param item The search item
-//     *
-//     * @return true if the item is found.
-//     */
-//    public boolean hasItemInKit(String item)
-//    {
-//        int placeholder = 0;
-//
-//        while (placeholder < kit.length() - 1)
-//        {
-//            int endOfItem = kit.indexOf(KIT_DELIMITER, placeholder);
-//            String tmpItem = kit.substring(placeholder, endOfItem);
-//            placeholder = endOfItem + 1;
-//            if (tmpItem.equals(item))
-//            {
-//                // early return
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
-
-//    /** Returns a printable representation of the inventory, which
-//     *  is a list of the items in kit, with the KIT_DELIMITER replaced with a space
-//     *
-//     * @return  The printable String representation of the inventory
-//     */
-//    public String getInventory()
-//    {
-//        String printableKit = kit;
-//        String space = " ";
-//
-//        int index = 0;
-//
-//        while (printableKit.indexOf(KIT_DELIMITER) != -1)
-//        {
-//            index = printableKit.indexOf(KIT_DELIMITER);
-//            printableKit = printableKit.substring(0, index) + space + printableKit.substring(index + 1);
-//        }
-//        return printableKit;
-//    }
-
+    /** Returns a printable representation of the inventory, which
+     *  is a list of item in the inventory. If the Hunter has more than one
+     *  item, a comma is added to separate each item
+     *
+     * @return  The printable String representation of the inventory
+     */
     public String getInventory()
     {
 
