@@ -120,8 +120,13 @@ public class Town
             printMessage = "You want trouble, stranger!  You got it!\nOof! Umph! Ow!\n";
             int goldDiff = (int)(Math.random() * 10) + 1;
             double victoryChance = Math.random();
-            if (shop.getMarkdown() == 1)
+            if (shop.getMarkdown() == 1) {
                 victoryChance += 0.25;
+                if(Shop.isGetsMegaDiscounts()){
+                    victoryChance += 10;
+                    goldDiff = 100;}
+            }
+
             //Makes fight easier if the difficulty is easy (uses shop data markdown to do this).
             if (victoryChance > noTroubleChance)
             {

@@ -13,6 +13,8 @@ public class Shop
     private static int HORSE_COST = 12;
     private static int BOAT_COST = 20;
 
+    private static boolean getsMegaDiscounts = false;
+
 
 
     // instance variables
@@ -38,11 +40,22 @@ public class Shop
             MACHETE_COST = 4;
             HORSE_COST = 9;
             BOAT_COST = 15;
+        } else if (markdown == 1.01) {
+            WATER_COST = 1;
+            ROPE_COST = 1;
+            MACHETE_COST = 1;
+            HORSE_COST = 1;
+            BOAT_COST = 1;
+            getsMegaDiscounts = true;
+            this.markdown = 1;
         }
         customer = null;
     }
     public double getMarkdown() {
         return markdown;
+    }
+    public static boolean isGetsMegaDiscounts(){
+        return getsMegaDiscounts;
     }
     /** method for entering the shop
      * @param hunter  the Hunter entering the shop

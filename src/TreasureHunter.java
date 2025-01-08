@@ -17,6 +17,7 @@ public class TreasureHunter
 
     private boolean easyMode;
     private boolean normalMode;
+    private boolean cheatMode;
 
     private boolean hasAllTreasure = false;
     //Constructor
@@ -63,6 +64,9 @@ public class TreasureHunter
         else if(difficulty.equals("e") || difficulty.equals("E")){
             easyMode = true;
         }
+        else if(difficulty.equals("password") || difficulty.equals("cheater")){
+            cheatMode = true;
+        }
         else
             normalMode = true;
     }
@@ -86,9 +90,13 @@ public class TreasureHunter
             markdown = 0.75;
             toughness = 0.5;
         }
-        else {
+        else if (easyMode) {
             markdown = 1;
             toughness = 0.3;
+        }
+        else {
+            markdown = 1.01;
+            toughness = 0.6;
         }
 
         // note that we don't need to access the Shop object
