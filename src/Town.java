@@ -8,6 +8,7 @@ public class Town
     private Hunter hunter;
     private Shop shop;
     private Terrain terrain;
+    private Casino casino;
     private String printMessage;
     private boolean toughTown;
     private boolean hasDied;
@@ -27,6 +28,7 @@ public class Town
     public Town(Shop shop, double toughness)
     {
         this.shop = shop;
+        casino = new Casino();
         this.terrain = getNewTerrain();
 
         // the hunter gets set using the hunterArrives method, which
@@ -92,6 +94,11 @@ public class Town
     public void enterShop(String choice)
     {
         shop.enter(hunter, choice);
+    }
+
+    public void enterCasino()
+    {
+        casino.enter(hunter);
     }
 
     /**

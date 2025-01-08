@@ -190,6 +190,10 @@ public class TreasureHunter
         {
             currentTown.huntForTreasure();
         }
+        else if (choice.equalsIgnoreCase("c"))
+        {
+            currentTown.enterCasino();
+        }
         else if (choice.equals("X") || choice.equals("x"))
         {
             System.out.println("Fare thee well, " + hunter.getHunterName() + "!");
