@@ -13,13 +13,13 @@ public class TreasureHunter
     private Hunter hunter;
     private boolean hardMode;
 
-
-
     private boolean easyMode;
     private boolean normalMode;
     private boolean cheatMode;
 
     private boolean hasAllTreasure = false;
+
+    private Scanner scanner = new Scanner(System.in);
     //Constructor
     /**
      * Constructs the Treasure Hunter game.
@@ -45,7 +45,7 @@ public class TreasureHunter
      */
     private void welcomePlayer()
     {
-        Scanner scanner = new Scanner(System.in);
+//        Scanner scanner = new Scanner(System.in);
 
         System.out.println("Welcome to TREASURE HUNTER!");
         System.out.println("Going hunting for the big treasure, eh?");
@@ -120,11 +120,11 @@ public class TreasureHunter
     /**
      * Displays the menu and receives the choice from the user.<p>
      * The choice is sent to the processChoice() method for parsing.<p>
-     * This method will loop until the user chooses to exit.
+     * This method will loop until the user chooses to exit or lose the game.
      */
     private void showMenu()
     {
-        Scanner scanner = new Scanner(System.in);
+//        Scanner scanner = new Scanner(System.in);
         String choice = "";
 
         while (!(choice.equals("X") || choice.equals("x")) && !currentTown.isDead() && !hasAllTreasure)
@@ -174,6 +174,7 @@ public class TreasureHunter
         if (choice.equals("B") || choice.equals("b") || choice.equals("S") || choice.equals("s"))
         {
             currentTown.enterShop(choice);
+            processShop(currentTown, choice);
         }
         else if (choice.equals("M") || choice.equals("m"))
         {
@@ -203,6 +204,50 @@ public class TreasureHunter
         else
         {
             System.out.println("Yikes! That's an invalid option! Try again.");
+        }
+    }
+
+    private void processShop(Town town, String choice)
+    {
+        Shop shop = town.getShop();
+        System.out.println(town.getShop().getShopMsg());
+        if (choice.equalsIgnoreCase("b"))
+        {
+            String item = scanner.nextLine();
+            int cost = shop.checkMarketPrice(item, true);
+            if (cost == 0)
+            {
+                System.out.println("We ain't got none of those.");
+            }
+            else
+            {
+                System.out.print("It'll cost you " + cost + " gold. Buy it (y/n)? ");
+                String option = scanner.nextLine();
+
+                if (option.equals("y") || option.equals("Y"))
+                {
+                    shop.buyItem(item);
+                }
+            }
+        }
+        else if (hunter.getInventorySize() != 0)
+        {
+            String item = scanner.nextLine();
+            int cost = shop.checkMarketPrice(item, false);
+            if (cost == 0)
+            {
+                System.out.println("We don't want none of those.");
+            }
+            else
+            {
+                System.out.print("It'll get you " + cost + " gold. Sell it (y/n)? ");
+                String option = scanner.nextLine();
+
+                if (option.equals("y") || option.equals("Y"))
+                {
+                    shop.sellItem(item);
+                }
+            }
         }
     }
 }

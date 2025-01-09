@@ -19,6 +19,8 @@ public class Shop
     private double markdown;
     private Hunter customer;
 
+    private String shopMsg = "";
+
     //Constructor
     public Shop(double markdown)
     {
@@ -54,6 +56,13 @@ public class Shop
     public boolean isGetsMegaDiscounts(){
         return getsMegaDiscounts;
     }
+
+
+    public String getShopMsg()
+    {
+        return shopMsg;
+    }
+
     /** method for entering the shop
      * @param hunter  the Hunter entering the shop
      * @param buyOrSell  String that determines if hunter is "B"uying or "S"elling
@@ -66,47 +75,56 @@ public class Shop
         Scanner scanner = new Scanner(System.in);
         if (buyOrSell.equals("B") || buyOrSell.equals("b"))
         {
-            System.out.println("Welcome to the shop! We have the finest wares in town.");
-            System.out.println("Currently we have the following items:");
-            System.out.println(inventory());
-            System.out.print("What're you lookin' to buy? ");
-            String item = scanner.nextLine();
-            int cost = checkMarketPrice(item, true);
-            if (cost == 0)
-            {
-                System.out.println("We ain't got none of those.");
-            }
-            else
-            {
-                System.out.print("It'll cost you " + cost + " gold. Buy it (y/n)? ");
-                String option = scanner.nextLine();
+//            System.out.println("Welcome to the shop! We have the finest wares in town.");
+//            System.out.println("Currently we have the following items:");
+//            System.out.println(inventory());
+//            System.out.print("What're you lookin' to buy? ");
 
-                if (option.equals("y") || option.equals("Y"))
-                {
-                    buyItem(item);
-                }
-            }
+            shopMsg = "Welcome to the shop! We have the finest wares in town.";
+            shopMsg += "\nCurrently we have the following items:";
+            shopMsg += "\n" + inventory();
+            shopMsg += "\n What're you lookin' to buy? ";
+//            String item = scanner.nextLine();
+//            int cost = checkMarketPrice(item, true);
+//            if (cost == 0)
+//            {
+//                System.out.println("We ain't got none of those.");
+//            }
+//            else
+//            {
+//                System.out.print("It'll cost you " + cost + " gold. Buy it (y/n)? ");
+//                String option = scanner.nextLine();
+//
+//                if (option.equals("y") || option.equals("Y"))
+//                {
+//                    buyItem(item);
+//                }
+//            }
+        }
+        else if (hunter.getInventorySize() != 0)
+        {
+            shopMsg = "What're you lookin' to sell? ";
+            shopMsg += "\n You currently have the following items: " + customer.getInventory();
+//            String item = scanner.nextLine();
+//            int cost = checkMarketPrice(item, false);
+//            if (cost == 0)
+//            {
+//                System.out.println("We don't want none of those.");
+//            }
+//            else
+//            {
+//                System.out.print("It'll get you " + cost + " gold. Sell it (y/n)? ");
+//                String option = scanner.nextLine();
+//
+//                if (option.equals("y") || option.equals("Y"))
+//                {
+//                    sellItem(item);
+//                }
+//            }
         }
         else
         {
-            System.out.println("What're you lookin' to sell? ");
-            System.out.print("You currently have the following items: " + customer.getInventory());
-            String item = scanner.nextLine();
-            int cost = checkMarketPrice(item, false);
-            if (cost == 0)
-            {
-                System.out.println("We don't want none of those.");
-            }
-            else
-            {
-                System.out.print("It'll get you " + cost + " gold. Sell it (y/n)? ");
-                String option = scanner.nextLine();
-
-                if (option.equals("y") || option.equals("Y"))
-                {
-                    sellItem(item);
-                }
-            }
+            shopMsg = "You ain't got nuthin, get out!";
         }
     }
 

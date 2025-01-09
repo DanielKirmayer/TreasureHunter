@@ -38,6 +38,8 @@ public class Hunter
         return hunterName;
     }
 
+    public int getInventorySize() {return inventory.size(); }
+
     public int getGold()
     {
         return gold;

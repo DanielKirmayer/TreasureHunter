@@ -46,6 +46,8 @@ public class Town
         return printMessage;
     }
 
+    public Shop getShop() {return shop;}
+
     /**
      * Assigns an object to the Hunter in town.
      * @param h The arriving Hunter.
@@ -173,15 +175,16 @@ public class Town
             }
             else
             {
-                System.out.println("Unfortunately, you found nothing");
+                printMessage = "\nUnfortunately, you found nothing";
             }
-
         }
         else
         {
-            System.out.println("You have already tried to hunt for treasure.");
-            // tell hunter he already tried hunting
+            printMessage = "You have already tried to hunt for treasure.";
         }
+
+
+        // tell hunter he already tried hunting
     }
 
     // to display if already hunted for treasure, check huntedTreasure before
