@@ -7,11 +7,11 @@ import java.util.Scanner;
 public class Shop
 {
     // constants
-    private static int WATER_COST = 2;
-    private static int ROPE_COST = 4;
-    private static int MACHETE_COST = 6;
-    private static int HORSE_COST = 12;
-    private static int BOAT_COST = 20;
+    private int WATER_COST = 2;
+    private int ROPE_COST = 4;
+    private int MACHETE_COST = 6;
+    private int HORSE_COST = 12;
+    private int BOAT_COST = 20;
 
     private boolean getsMegaDiscounts = false;
 
@@ -32,7 +32,6 @@ public class Shop
             MACHETE_COST = 3;
             HORSE_COST = 6;
             BOAT_COST = 10;
-
         }
         else if (markdown == 0.75){
             WATER_COST = 2;
@@ -181,7 +180,7 @@ public class Shop
     }
 
     /**
-     * Checks the item entered against the costs listed in the static variables.
+     * Checks the item entered against the costs listed in the variables.
      *
      * @param item The item being checked for cost.
      * @return The cost of the item or 0 if the item is not found.
