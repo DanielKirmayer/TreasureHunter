@@ -17,6 +17,7 @@ public class Hunter
     //instance variables
     private String hunterName;
     private int gold;
+    private int luckChance;
 
     //Constructor
     /**
@@ -27,8 +28,8 @@ public class Hunter
     public Hunter(String hunterName, int startingGold)
     {
         this.hunterName = hunterName;
-//        kit = "";
         gold = startingGold;
+        luckChance = 0;
     }
 
     //Accessors
@@ -40,6 +41,16 @@ public class Hunter
     public int getGold()
     {
         return gold;
+    }
+
+    public int getLuckChance()
+    {
+        return luckChance;
+    }
+
+    public void changeLuckChance(int change)
+    {
+        luckChance += change;
     }
 
     public void changeGold(int modifier)

@@ -67,8 +67,9 @@ public class TreasureHunter
         else if(difficulty.equals("password") || difficulty.equals("cheater")){
             cheatMode = true;
         }
-        else
+        else {
             normalMode = true;
+        }
     }
 
     /**
@@ -94,7 +95,7 @@ public class TreasureHunter
             markdown = 1;
             toughness = 0.3;
         }
-        else {
+        else if (cheatMode){
             markdown = 1.01;
             toughness = 0.6;
         }

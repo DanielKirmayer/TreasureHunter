@@ -129,7 +129,7 @@ public class Town
             double victoryChance = Math.random();
             if (shop.getMarkdown() == 1) {
                 victoryChance += 0.25;
-                if(Shop.isGetsMegaDiscounts()){
+                if(shop.isGetsMegaDiscounts()){
                     victoryChance += 10;
                     goldDiff = 100;}
             }
@@ -198,7 +198,10 @@ public class Town
         if (!huntedTreasure)
         {
             this.huntedTreasure = true;
-            if ((Math.random() * 1) <= 0.1 )
+            System.out.println("Base chance: " + 1.0/100);
+            System.out.println("Luck chance: " + hunter.getLuckChance());
+            System.out.println("Total: " + (1.0 + hunter.getLuckChance()) / 100);
+            if ((Math.random() * 1) <= (1.0 + hunter.getLuckChance()) / 100 )
             {
                 return true;
             }

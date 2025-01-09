@@ -13,7 +13,7 @@ public class Shop
     private static int HORSE_COST = 12;
     private static int BOAT_COST = 20;
 
-    private static boolean getsMegaDiscounts = false;
+    private boolean getsMegaDiscounts = false;
 
 
 
@@ -54,7 +54,7 @@ public class Shop
     public double getMarkdown() {
         return markdown;
     }
-    public static boolean isGetsMegaDiscounts(){
+    public boolean isGetsMegaDiscounts(){
         return getsMegaDiscounts;
     }
     /** method for entering the shop
