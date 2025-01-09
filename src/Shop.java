@@ -6,16 +6,14 @@ import java.util.Scanner;
 
 public class Shop
 {
-    // constants
-    private int WATER_COST = 2;
-    private int ROPE_COST = 4;
-    private int MACHETE_COST = 6;
-    private int HORSE_COST = 12;
-    private int BOAT_COST = 20;
+    // Shop prices
+    private int waterCost;
+    private int ropeCost;
+    private int macheteCost;
+    private int horseCost;
+    private int boatCost;
 
     private boolean getsMegaDiscounts = false;
-
-
 
     // instance variables
     private double markdown;
@@ -27,24 +25,24 @@ public class Shop
         this.markdown = markdown;
         // adjusts prices based on the markdown.
         if (markdown == 1) {
-            WATER_COST = 1;
-            ROPE_COST = 2;
-            MACHETE_COST = 3;
-            HORSE_COST = 6;
-            BOAT_COST = 10;
+            waterCost = 1;
+            ropeCost = 2;
+            macheteCost = 3;
+            horseCost = 6;
+            boatCost = 10;
         }
         else if (markdown == 0.75){
-            WATER_COST = 2;
-            ROPE_COST = 3;
-            MACHETE_COST = 4;
-            HORSE_COST = 9;
-            BOAT_COST = 15;
+            waterCost = 2;
+            ropeCost = 3;
+            macheteCost = 4;
+            horseCost = 9;
+            boatCost = 15;
         } else if (markdown == 1.01) {
-            WATER_COST = 1;
-            ROPE_COST = 1;
-            MACHETE_COST = 1;
-            HORSE_COST = 1;
-            BOAT_COST = 1;
+            waterCost = 1;
+            ropeCost = 1;
+            macheteCost = 1;
+            horseCost = 1;
+            boatCost = 1;
             getsMegaDiscounts = true;
             this.markdown = 1;
         }
@@ -118,11 +116,11 @@ public class Shop
      */
     public String inventory()
     {
-        String str = "Water: " + WATER_COST + " gold\n";
-        str += "Rope: " + ROPE_COST + " gold\n";
-        str += "Machete: " + MACHETE_COST + " gold\n";
-        str += "Horse: " + HORSE_COST + " gold\n";
-        str += "Boat: " + BOAT_COST + " gold\n";
+        String str = "Water: " + waterCost + " gold\n";
+        str += "Rope: " + ropeCost + " gold\n";
+        str += "Machete: " + macheteCost + " gold\n";
+        str += "Horse: " + horseCost + " gold\n";
+        str += "Boat: " + boatCost + " gold\n";
 
         return str;
     }
@@ -189,23 +187,23 @@ public class Shop
     {
         if (item.equalsIgnoreCase("Water"))
         {
-            return WATER_COST;
+            return waterCost;
         }
         else if (item.equalsIgnoreCase("Rope"))
         {
-            return ROPE_COST;
+            return ropeCost;
         }
         else if (item.equalsIgnoreCase("Machete"))
         {
-            return MACHETE_COST;
+            return macheteCost;
         }
         else if (item.equalsIgnoreCase("Horse"))
         {
-            return HORSE_COST;
+            return horseCost;
         }
         else if (item.equalsIgnoreCase("Boat"))
         {
-            return BOAT_COST;
+            return boatCost;
         }
         else
         {
