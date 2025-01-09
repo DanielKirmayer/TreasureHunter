@@ -209,6 +209,7 @@ public class Hunter
         {
             str += " and" + getInventory();
         }
+        str += "\nLuck chance at: " + getLuckChance();
         return str;
     }
 }
