@@ -198,9 +198,9 @@ public class Town
         if (!huntedTreasure)
         {
             this.huntedTreasure = true;
-            System.out.println("Base chance: " + 1.0/100);
-            System.out.println("Luck chance: " + hunter.getLuckChance());
-            System.out.println("Total: " + (1.0 + hunter.getLuckChance()) / 100);
+//            System.out.println("Base chance: " + 1.0/100);
+//            System.out.println("Luck chance: " + hunter.getLuckChance());
+//            System.out.println("Total: " + (1.0 + hunter.getLuckChance()) / 100);
             if ((Math.random() * 1) <= (1.0 + hunter.getLuckChance()) / 100 )
             {
                 return true;

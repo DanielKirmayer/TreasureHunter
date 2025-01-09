@@ -11,7 +11,7 @@ public class Casino {
     {
         if (hunter.getGold() != 0)
         {
-            System.out.println("Luck chance: " + hunter.getLuckChance());
+            // System.out.println("Luck chance: " + hunter.getLuckChance());
             System.out.println("You have "+hunter.getGold()+" gold, how much would you like to wager?");
             Scanner scanner1 = new Scanner(System.in);
             String wager = scanner1.nextLine();
@@ -57,7 +57,7 @@ public class Casino {
                 System.out.println("You got the right number! good job! You get double your money!");
                 hunter.changeGold(wagerInt);
                 hunter.changeLuckChance((wagerInt*2 / 10) * 2);
-                System.out.println("Luck chance: " + hunter.getLuckChance());
+                // System.out.println("Luck chance: " + hunter.getLuckChance());
             } else if (Math.abs(diceTotal - playerChoice) <= 2) {
                 System.out.println("The number was "+diceTotal+" you didn't get it, but you were within 2. Have your money back!");
             }
@@ -67,7 +67,7 @@ public class Casino {
                 hunter.changeGold(-wagerInt);
 
                 hunter.changeLuckChance(-(wagerInt / 10) * 2);
-                System.out.println("Luck chance: " + hunter.getLuckChance());
+                // System.out.println("Luck chance: " + hunter.getLuckChance());
             }
             }
             else if (wagerInt != 165723579) {
